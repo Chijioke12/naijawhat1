@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
-    "@lucide/svelte": "^1.26.0",
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
     "canvas": "^3.2.3",
     "dotenv": "^17.2.3",
@@ -30,7 +29,7 @@
     "@types/adm-zip": "^0.5.8",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
-    "@vitejs/plugin-legacy": "6.0.1",
+    "@vitejs/plugin-legacy": "^5.4.3",
     "adm-zip": "^0.6.0",
     "esbuild": "^0.25.0",
     "terser": "^5.49.0",
