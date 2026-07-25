@@ -1,0 +1,41 @@
+{
+  "name": "react-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "generate:assets": "node scripts/generate_whot_assets.js",
+    "prebuild": "npm run generate:assets",
+    "dev": "node scripts/generate_whot_assets.js && vite --port=3000 --host=0.0.0.0",
+    "build": "npm run generate:assets && node scripts/build_prod.js",
+    "postbuild": "node scripts/bundle_kaios.cjs",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@lucide/svelte": "^1.26.0",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "canvas": "^3.2.3",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "lucide-svelte": "^1.0.1",
+    "motion": "^12.23.24",
+    "phaser": "3.24.1",
+    "svelte": "^4.2.20"
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "^5.0.8",
+    "@types/adm-zip": "^0.5.8",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-legacy": "6.0.1",
+    "adm-zip": "^0.6.0",
+    "esbuild": "^0.25.0",
+    "terser": "^5.49.0",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^5.4.21"
+  }
+}

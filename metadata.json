@@ -1,0 +1,6 @@
+{
+  "name": "Naija Whot 320x240",
+  "description": "High contrast Whot card game designed for 320x240 device screen using Phaser 3 engine with custom graphic drawing and suit selector image.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
