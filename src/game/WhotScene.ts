@@ -130,8 +130,7 @@ export class WhotScene extends Phaser.Scene {
     bgGraphics.fillStyle(0x064e3b, 1);
     bgGraphics.fillRect(4, 4, 312, 232);
     // Sharp border
-    bgGraphics.lineStyle(2, 0xf1c40f, 1);
-    bgGraphics.strokeRect(4, 4, 312, 232);
+    this.drawRectBorder(bgGraphics, 4, 4, 312, 232, 2, 0xf1c40f);
 
     // Header Labels (CPU Score & Turn Indicator)
     this.add.text(12, 11, 'CPU BOT', {
@@ -174,10 +173,7 @@ export class WhotScene extends Phaser.Scene {
     // Requested Suit Container (Right: X = 255, Y = 100)
     this.requestedSuitContainer = this.add.container(255, 100);
     const suitBg = this.add.graphics();
-    suitBg.fillStyle(0x064e3b, 0.95);
-    suitBg.fillRoundedRect(-30, -28, 60, 56, 6);
-    suitBg.lineStyle(2, 0xf1c40f, 1);
-    suitBg.strokeRoundedRect(-30, -28, 60, 56, 6);
+    this.drawRoundedRectBorder(suitBg, -30, -28, 60, 56, 6, 2, 0xf1c40f, 0x064e3b, 0.95);
     this.requestedSuitContainer.add(suitBg);
 
     this.requestedSuitText = this.add.text(0, -18, 'I NEED', {
@@ -1025,8 +1021,7 @@ export class WhotScene extends Phaser.Scene {
     const bgGraphics = this.add.graphics();
     bgGraphics.fillStyle(0x064e3b, 1);
     bgGraphics.fillRect(0, 0, 320, 240);
-    bgGraphics.lineStyle(2, 0xf1c40f, 1);
-    bgGraphics.strokeRect(4, 4, 312, 232);
+    this.drawRectBorder(bgGraphics, 4, 4, 312, 232, 2, 0xf1c40f);
     this.loadingContainer.add(bgGraphics);
 
     const titleText = this.add.text(160, 42, 'NAIJA WHOT 3310', {
@@ -1047,10 +1042,7 @@ export class WhotScene extends Phaser.Scene {
 
     // Outer Progress Bar border
     const barBox = this.add.graphics();
-    barBox.lineStyle(1.5, 0x38bdf8, 1);
-    barBox.strokeRoundedRect(50, 162, 220, 14, 4);
-    barBox.fillStyle(0x1e293b, 1);
-    barBox.fillRoundedRect(50, 162, 220, 14, 4);
+    this.drawRoundedRectBorder(barBox, 50, 162, 220, 14, 4, 1.5, 0x38bdf8, 0x1e293b, 1);
     this.loadingContainer.add(barBox);
 
     // Inner Progress Bar Fill Graphics
@@ -1153,16 +1145,10 @@ export class WhotScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x064e3b, 1);
     bg.fillRect(0, 0, 320, 240);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(4, 4, 312, 232);
-    bg.fillStyle(0x064e3b, 1);
-    bg.fillRect(0, 0, 320, 240);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(4, 4, 312, 232);
+    this.drawRectBorder(bg, 4, 4, 312, 232, 2, 0xf1c40f);
     bg.fillStyle(0x0f1016, 0.95);
     bg.fillRect(20, 20, 280, 200);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(20, 20, 280, 200);
+    this.drawRectBorder(bg, 20, 20, 280, 200, 2, 0xf1c40f);
     this.menuContainer.add(bg);
 
     const titleText = this.add.text(160, 42, 'NAIJA WHOT', {
@@ -1192,10 +1178,7 @@ export class WhotScene extends Phaser.Scene {
 
     menuItems.forEach((item, index) => {
       const itemBg = this.add.graphics();
-      itemBg.fillStyle(0x1a1c29, 1);
-      itemBg.fillRoundedRect(50, item.y - 14, 220, 28, 6);
-      itemBg.lineStyle(1, 0x334155, 1);
-      itemBg.strokeRoundedRect(50, item.y - 14, 220, 28, 6);
+      this.drawRoundedRectBorder(itemBg, 50, item.y - 14, 220, 28, 6, 1, 0x334155, 0x1a1c29, 1);
       this.menuContainer.add(itemBg);
 
       const label = this.add.text(160, item.y, item.label, {
@@ -1256,10 +1239,7 @@ export class WhotScene extends Phaser.Scene {
     const ys = [95, 130, 165];
     const y = ys[this.menuSelectedIndex];
 
-    this.menuHighlight.lineStyle(2, 0xf1c40f, 1);
-    this.menuHighlight.strokeRoundedRect(48, y - 16, 224, 32, 8);
-    this.menuHighlight.fillStyle(0xf1c40f, 0.15);
-    this.menuHighlight.fillRoundedRect(48, y - 16, 224, 32, 8);
+    this.drawRectHighlight(this.menuHighlight, 48, y - 16, 224, 32, 2, 0xf1c40f, 0xf1c40f, 0.15);
   }
 
   private executeMenuSelection(): void {
@@ -1288,16 +1268,10 @@ export class WhotScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x064e3b, 1);
     bg.fillRect(0, 0, 320, 240);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(4, 4, 312, 232);
-    bg.fillStyle(0x064e3b, 1);
-    bg.fillRect(0, 0, 320, 240);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(4, 4, 312, 232);
+    this.drawRectBorder(bg, 4, 4, 312, 232, 2, 0xf1c40f);
     bg.fillStyle(0x0f1016, 0.98);
     bg.fillRect(15, 15, 290, 210);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(15, 15, 290, 210);
+    this.drawRectBorder(bg, 15, 15, 290, 210, 2, 0xf1c40f);
     this.rulesContainer.add(bg);
 
     const titleText = this.add.text(160, 32, 'HOW TO PLAY NAIJA WHOT', {
@@ -1326,10 +1300,7 @@ export class WhotScene extends Phaser.Scene {
     this.rulesContainer.add(rulesContent);
 
     const backBtnBg = this.add.graphics();
-    backBtnBg.fillStyle(0x1a1c29, 1);
-    backBtnBg.fillRoundedRect(90, 190, 140, 24, 6);
-    backBtnBg.lineStyle(1, 0xf1c40f, 1);
-    backBtnBg.strokeRoundedRect(90, 190, 140, 24, 6);
+    this.drawRoundedRectBorder(backBtnBg, 90, 190, 140, 24, 6, 1, 0xf1c40f, 0x1a1c29, 1);
     this.rulesContainer.add(backBtnBg);
 
     const backBtnText = this.add.text(160, 202, '◄ BACK TO MENU (OK)', {
@@ -1366,16 +1337,10 @@ export class WhotScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x064e3b, 1);
     bg.fillRect(0, 0, 320, 240);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(4, 4, 312, 232);
-    bg.fillStyle(0x064e3b, 1);
-    bg.fillRect(0, 0, 320, 240);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(4, 4, 312, 232);
+    this.drawRectBorder(bg, 4, 4, 312, 232, 2, 0xf1c40f);
     bg.fillStyle(0x0f1016, 0.98);
     bg.fillRect(15, 15, 290, 210);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(15, 15, 290, 210);
+    this.drawRectBorder(bg, 15, 15, 290, 210, 2, 0xf1c40f);
     this.settingsPhaserContainer.add(bg);
 
     const titleText = this.add.text(160, 30, 'GAME SETTINGS', {
@@ -1417,10 +1382,7 @@ export class WhotScene extends Phaser.Scene {
     settingsItems.forEach((item, index) => {
       const y = ys[index];
       const itemBg = this.add.graphics();
-      itemBg.fillStyle(0x1a1c29, 1);
-      itemBg.fillRoundedRect(30, y - 9, 260, 18, 4);
-      itemBg.lineStyle(1, 0x334155, 1);
-      itemBg.strokeRoundedRect(30, y - 9, 260, 18, 4);
+      this.drawRoundedRectBorder(itemBg, 30, y - 9, 260, 18, 4, 1, 0x334155, 0x1a1c29, 1);
       this.settingsPhaserContainer.add(itemBg);
 
       const label = this.add.text(40, y, item.label, {
@@ -1502,10 +1464,7 @@ export class WhotScene extends Phaser.Scene {
     const ys = [46, 68, 90, 112, 134, 156, 184];
     const y = ys[this.settingsSelectedIndex];
 
-    this.settingsHighlight.lineStyle(2, 0xf1c40f, 1);
-    this.settingsHighlight.strokeRoundedRect(28, y - 11, 264, 22, 6);
-    this.settingsHighlight.fillStyle(0xf1c40f, 0.15);
-    this.settingsHighlight.fillRoundedRect(28, y - 11, 264, 22, 6);
+    this.drawRectHighlight(this.settingsHighlight, 28, y - 11, 264, 22, 2, 0xf1c40f, 0xf1c40f, 0.15);
   }
 
   private executeSettingsSelection(): void {
@@ -1651,8 +1610,7 @@ export class WhotScene extends Phaser.Scene {
       cy = 124;
     }
     
-    this.whotModalHighlight.lineStyle(3, 0xffffff, 1);
-    this.whotModalHighlight.strokeRoundedRect(cx - 39 - 2, cy - 21 - 2, 78 + 4, 42 + 4, 6);
+    this.drawRectHighlight(this.whotModalHighlight, cx - 39 - 2, cy - 21 - 2, 78 + 4, 42 + 4, 3, 0xffffff, 0, 0);
   }
 
   public selectWhotSuit(suit: Suit): void {
@@ -1685,16 +1643,12 @@ export class WhotScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x0f172a, 0.94);
     bg.fillRect(0, 0, 320, 240);
-    bg.lineStyle(2, 0x2ecc71, 1);
-    bg.strokeRect(8, 8, 304, 224);
+    this.drawRectBorder(bg, 8, 8, 304, 224, 2, 0x2ecc71);
     this.validCardsModalContainer.add(bg);
 
     // Title Bar
     const titleBg = this.add.graphics();
-    titleBg.fillStyle(0x047857, 1);
-    titleBg.fillRoundedRect(20, 14, 280, 28, 6);
-    titleBg.lineStyle(1.5, 0xf1c40f, 1);
-    titleBg.strokeRoundedRect(20, 14, 280, 28, 6);
+    this.drawRoundedRectBorder(titleBg, 20, 14, 280, 28, 6, 1.5, 0xf1c40f, 0x047857, 1);
     this.validCardsModalContainer.add(titleBg);
 
     const titleText = this.add.text(160, 28, 'PLAYABLE CARDS SELECTOR', {
@@ -1783,10 +1737,10 @@ export class WhotScene extends Phaser.Scene {
 
       // Number Badge
       const numBadgeBg = this.add.graphics();
-      numBadgeBg.fillStyle(isSelected ? 0xf1c40f : 0x1e293b, 1);
+      numBadgeBg.fillStyle(0x2ecc71, 1);
       numBadgeBg.fillCircle(0, -42, 10);
-      numBadgeBg.lineStyle(1.5, 0x2ecc71, 1);
-      numBadgeBg.strokeCircle(0, -42, 10);
+      numBadgeBg.fillStyle(isSelected ? 0xf1c40f : 0x1e293b, 1);
+      numBadgeBg.fillCircle(0, -42, 8.5);
       cardItemContainer.add(numBadgeBg);
 
       const numText = this.add.text(0, -42, `${idx + 1}`, {
@@ -1825,14 +1779,10 @@ export class WhotScene extends Phaser.Scene {
     const cy = 118;
 
     // Glowing Box around selected card
-    this.validCardsModalHighlight.lineStyle(3, 0xf1c40f, 1);
-    this.validCardsModalHighlight.strokeRoundedRect(cx - 26, cy - 54, 52, 102, 6);
+    this.drawRectHighlight(this.validCardsModalHighlight, cx - 26, cy - 54, 52, 102, 3, 0xf1c40f, 0, 0);
 
     // Play Button Bar at bottom of modal
-    this.validCardsModalHighlight.fillStyle(0x16a34a, 1);
-    this.validCardsModalHighlight.fillRoundedRect(70, 185, 180, 24, 6);
-    this.validCardsModalHighlight.lineStyle(1.5, 0xf1c40f, 1);
-    this.validCardsModalHighlight.strokeRoundedRect(70, 185, 180, 24, 6);
+    this.drawRoundedRectBorder(this.validCardsModalHighlight, 70, 185, 180, 24, 6, 1.5, 0xf1c40f, 0x16a34a, 1);
 
     const playText = this.add.text(160, 197, '★ PRESS OK TO PLAY ★', {
       fontFamily: "'Luckiest Guy', 'Baloo Chettan', sans-serif",
@@ -1918,12 +1868,8 @@ export class WhotScene extends Phaser.Scene {
     const bg = this.add.graphics();
     bg.fillStyle(0x064e3b, 1);
     bg.fillRect(-160, -120, 320, 240);
-    bg.lineStyle(2, 0xf1c40f, 1);
-    bg.strokeRect(-156, -116, 312, 232);
-    bg.fillStyle(0x0f172a, 0.95);
-    bg.fillRoundedRect(-130, -90, 260, 180, 10);
-    bg.lineStyle(3, 0xf1c40f, 1);
-    bg.strokeRoundedRect(-130, -90, 260, 180, 10);
+    this.drawRectBorder(bg, -156, -116, 312, 232, 2, 0xf1c40f);
+    this.drawRoundedRectBorder(bg, -130, -90, 260, 180, 10, 3, 0xf1c40f, 0x0f172a, 0.95);
     this.gameoverContainer.add(bg);
 
     const titleText = this.add.text(0, -55, 'GAME OVER', {
@@ -2032,5 +1978,33 @@ export class WhotScene extends Phaser.Scene {
       const val = parseInt(key, 10);
       this.selectValidCardByNumber(val);
     }
+  }
+
+  private drawRectHighlight(graphics: Phaser.GameObjects.Graphics, x: number, y: number, w: number, h: number, thickness: number, borderColor: number, fillColor: number, fillAlpha: number): void {
+    graphics.fillStyle(borderColor, 1);
+    graphics.fillRect(x, y, w, thickness); // Top
+    graphics.fillRect(x, y + h - thickness, w, thickness); // Bottom
+    graphics.fillRect(x, y + thickness, thickness, h - 2 * thickness); // Left
+    graphics.fillRect(x + w - thickness, y + thickness, thickness, h - 2 * thickness); // Right
+
+    if (fillAlpha > 0) {
+      graphics.fillStyle(fillColor, fillAlpha);
+      graphics.fillRect(x + thickness, y + thickness, w - 2 * thickness, h - 2 * thickness);
+    }
+  }
+
+  private drawRectBorder(graphics: Phaser.GameObjects.Graphics, x: number, y: number, w: number, h: number, thickness: number, color: number, alpha: number = 1): void {
+    graphics.fillStyle(color, alpha);
+    graphics.fillRect(x, y, w, thickness);
+    graphics.fillRect(x, y + h - thickness, w, thickness);
+    graphics.fillRect(x, y + thickness, thickness, h - 2 * thickness);
+    graphics.fillRect(x + w - thickness, y + thickness, thickness, h - 2 * thickness);
+  }
+
+  private drawRoundedRectBorder(graphics: Phaser.GameObjects.Graphics, x: number, y: number, w: number, h: number, radius: number, thickness: number, borderColor: number, fillColor: number, fillAlpha: number = 1): void {
+    graphics.fillStyle(borderColor, 1);
+    graphics.fillRoundedRect(x, y, w, h, radius);
+    graphics.fillStyle(fillColor, fillAlpha);
+    graphics.fillRoundedRect(x + thickness, y + thickness, w - 2 * thickness, h - 2 * thickness, Math.max(1, radius - thickness));
   }
 }
