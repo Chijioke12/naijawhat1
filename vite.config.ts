@@ -3,22 +3,6 @@ import path from 'path';
 import legacy from '@vitejs/plugin-legacy';
 import { defineConfig } from 'vite';
 
-const externalPhaserPlugin = {
-  name: 'external-phaser',
-  resolveId(id: string) {
-    if (id === 'phaser') {
-      return id;
-    }
-    return null;
-  },
-  load(id: string) {
-    if (id === 'phaser') {
-      return 'export default window.Phaser;';
-    }
-    return null;
-  }
-};
-
 export default defineConfig(() => {
   return {
     plugins: [
@@ -26,23 +10,14 @@ export default defineConfig(() => {
       legacy({
         targets: ['Firefox 48'],
       }),
-      externalPhaserPlugin
     ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
+        'phaser': path.resolve(__dirname, 'src/phaser-stub.ts'),
       },
     },
-    build: {
-      rollupOptions: {
-        external: ['phaser'],
-        output: {
-          globals: {
-            phaser: 'Phaser'
-          }
-        }
-      }
-    },
+
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
