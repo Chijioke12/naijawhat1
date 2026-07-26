@@ -106,18 +106,18 @@ ${svelteWindowLine}
   .virtual-softkey-bar {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 24px;
-    background-color: rgba(0, 0, 0, 0.65);
+    height: calc(var(--screen-height, 240px) * (20 / 240));
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 calc(var(--screen-height, 240px) * (8 / 240));
     z-index: 5;
     pointer-events: none;
   }
 
   .virtual-softkey {
-    font-size: 0.8rem;
+    font-size: calc(var(--screen-height, 240px) * (10.4 / 240));
     font-weight: 800;
     color: #f1c40f;
     font-family: 'Luckiest Guy', 'Baloo Chettan', monospace;

@@ -1,7 +1,13 @@
 import Phaser from 'phaser';
 import { WhotDeck, type Card, type Suit, type GameSettings } from './WhotDeck';
-import soundData from '../../public/sounds_base64.json';
-import assetData from '../../public/assets_base64.json';
+
+function getSoundData(): Record<string, string> {
+  return (typeof window !== 'undefined' ? (window as any).soundData : null) || {};
+}
+
+function getAssetData(): Record<string, string> {
+  return (typeof window !== 'undefined' ? (window as any).assetData : null) || {};
+}
 
 export class WhotScene extends Phaser.Scene {
   private deck!: WhotDeck;
@@ -81,7 +87,7 @@ export class WhotScene extends Phaser.Scene {
     // Decode base64 audio asynchronously in background to ensure instant start and no loader stalling
     const soundManager = this.sound as any;
     if (soundManager && typeof soundManager.decodeAudio === 'function') {
-      for (const [key, base64Str] of Object.entries(soundData)) {
+      for (const [key, base64Str] of Object.entries(getSoundData())) {
         try {
           soundManager.decodeAudio(key, base64Str as string);
         } catch (err) {
@@ -1061,7 +1067,7 @@ export class WhotScene extends Phaser.Scene {
     this.loadingContainer.add(loadingText);
 
     // Real asynchronous loading of remaining assets
-    const keysToLoad = Object.keys(assetData);
+    const keysToLoad = Object.keys(getAssetData());
     const totalAssets = keysToLoad.length;
     let loadedCount = 0;
     let hasFinishedLoading = false;
@@ -1137,7 +1143,7 @@ export class WhotScene extends Phaser.Scene {
       img.onerror = () => {
         checkProgress();
       };
-      img.src = assetData[key as keyof typeof assetData] as string;
+      img.src = getAssetData()[key] as string;
     }
   }
 

@@ -69,6 +69,16 @@
   const rskLabel = "";
   let isPlaying = false;
   let timer: any = null;
+  let screenFrameEl: HTMLElement | null = null;
+
+  function updateScale() {
+    if (!screenFrameEl) {
+      screenFrameEl = document.querySelector('.screen-frame');
+    }
+    if (!screenFrameEl) return;
+    const rect = screenFrameEl.getBoundingClientRect();
+    screenFrameEl.style.setProperty('--screen-height', `${rect.height}px`);
+  }
 
   function loadSettings() {
     const raw = localStorage.getItem('naija_whot_settings_hd');
@@ -96,11 +106,21 @@
 
   onMount(() => {
     loadSettings();
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    // Periodically ensure scaling is correct
+    const scaleCheckInterval = setInterval(updateScale, 1000);
+
     Promise.all([
       document.fonts.load('10px "Luckiest Guy"'),
-      document.fonts.load('10px "Baloo Chettan"')
-    ]).then(() => {
+      document.fonts.load('10px "Baloo Chettan"'),
+      fetch('/sounds_base64.json').then(r => r.json()).catch(err => { console.warn(err); return {}; }),
+      fetch('/assets_base64.json').then(r => r.json()).catch(err => { console.warn(err); return {}; })
+    ]).then(([font1, font2, sounds, assets]) => {
+      (window as any).soundData = sounds;
+      (window as any).assetData = assets;
       game = createPhaserGame('phaser-container');
+      setTimeout(updateScale, 100);
     });
     timer = setInterval(() => {
       const scene = getActiveScene();
@@ -118,6 +138,10 @@
         }
       }
     }, 100);
+
+    return () => {
+      clearInterval(scaleCheckInterval);
+    };
   });
 
   onDestroy(() => {
@@ -126,6 +150,7 @@
       game.destroy(true);
       game = null;
     }
+    window.removeEventListener('resize', updateScale);
   });
 
   function getActiveScene(): WhotScene | null {
@@ -907,19 +932,19 @@
   .virtual-softkey-bar {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 20px;
+    height: calc(var(--screen-height, 240px) * (20 / 240));
     background-color: transparent;
     border-top: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 8px;
+    padding: 0 calc(var(--screen-height, 240px) * (8 / 240));
     z-index: 5;
     pointer-events: none;
   }
 
   .virtual-softkey {
-    font-size: 0.65rem;
+    font-size: calc(var(--screen-height, 240px) * (10.4 / 240));
     font-weight: 800;
     color: #f1c40f;
     font-family: 'Luckiest Guy', 'Baloo Chettan', monospace;
